@@ -3,7 +3,9 @@ import {ErrorBoundary} from 'react-error-boundary';
 import './styles.css';
 
 interface IErrorProps {
-    error: string | null;
+    error: {
+        messsage: string | null
+    };
 }
 
 const ErrorFallback: React.FC<IErrorProps> = ({ error }) => {
@@ -16,7 +18,7 @@ const ErrorFallback: React.FC<IErrorProps> = ({ error }) => {
             <p className="error-boundary__title">
                 Что-то пошло не так...
                 <div className="error-boundary__error">
-                    {error}
+                    {error.messsage}
                 </div>
             </p>
         </div>

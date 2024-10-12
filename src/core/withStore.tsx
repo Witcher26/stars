@@ -13,7 +13,13 @@ const buildPropTypes = (originalPropTypes: Record<string, any>) => ({
     })
 });
 
-const _store: any = {};
+type TStore = {
+    gitHubStars: {}
+}
+
+const _store: TStore = {
+    gitHubStars: {}
+};
 
 const withStore = (Component: ComponentClass<any, any>) => {
     const originalComponentPropTypes = Component.propTypes ?? {};

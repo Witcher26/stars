@@ -1,4 +1,4 @@
-export default (...funcs: Function[]): any => {
+export default (...funcs: Function[]): Function => {
     if (funcs.length === 0) {
         return (arg: any) => arg
     }

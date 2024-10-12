@@ -18,11 +18,11 @@ import './styles.css';
 
 import Message from "../components/messages.json";
 
-const actionKeys = {
-    stars: "https://api.github.com/search/repositories?q=stars:>50&sort=stars"
-};
+enum ACTION_KEYS {
+    STARS = "https://api.github.com/search/repositories?q=stars:>50&sort=stars"
+}
 
-async function action(key: string) {
+async function action(key: ACTION_KEYS) {
     try {
         return await axios.get(key);
     } catch (error) {
@@ -46,10 +46,9 @@ function DefaultLayout() {
     const [savePreliminaryDataFx] = useUnit(eventsSaveFormData);
 
     useEffect(() => {
-        Promise.all([action(actionKeys.stars)])
+        Promise.all([action(ACTION_KEYS.STARS)])
             .then(([response]) => {
                 setData(response?.data.items);
-                // @ts-ignore
                 savePreliminaryDataFx(response?.data.items)
             })
             .catch(console.error)
