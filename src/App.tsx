@@ -1,5 +1,11 @@
+import {
+    DefaultLayout
+} from "./components";
+
 function App() {
-  return null
+    return (
+        <DefaultLayout/>
+    );
 }
 
 export default App;
