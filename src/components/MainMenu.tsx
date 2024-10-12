@@ -1,4 +1,3 @@
-import React from 'react';
 import './styles.css';
 import {
     withStore,
@@ -10,13 +9,29 @@ import { useAppContext } from './DefaultLayout';
 
 import Rights from '../core/rights';
 
-// @ts-ignore
+type TResponse = {
+    full_name: string,
+    stargazers_count: number,
+    id: number
+};
+
+interface IFormDataStore {
+    readonly gitHubStars: {
+        value: ReadonlyArray<TResponse>;
+    }
+}
+
+interface IMainMenuProps {
+    formData: {
+        formDataStore: IFormDataStore;
+    },
+    rights: string[];
+}
+
 function MainMenu({
-     // @ts-ignore
     formData,
-    // @ts-ignore
     rights
-}) {
+}: IMainMenuProps) {
     const {name} = useAppContext();
     const checkPermission = useHasRight(rights);
     const {gitHubStars} = formData.formDataStore;
@@ -32,7 +47,7 @@ function MainMenu({
     return (
         <div className="App">
             <ul>
-                {gitHubStars.value?.map((repo: any) => (
+                {gitHubStars.value?.map((repo: TResponse) => (
                     <li key={repo.id}>
                         {repo.full_name} ({repo.stargazers_count}) {name}
                     </li>
@@ -40,7 +55,6 @@ function MainMenu({
             </ul>
         </div>
     );
-
 }
 
 export default compose(

@@ -7,7 +7,7 @@
   
   .background {
     background-size: cover;
-    height: 35vh; /* Высота фона */
+    height: 35vh;
     position: relative;
   }
   

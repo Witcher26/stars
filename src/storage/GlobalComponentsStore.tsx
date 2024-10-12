@@ -2,7 +2,7 @@ import {makeObservable, observable} from 'mobx';
 
 class GlobalComponentsStore {
      private _register: string[] = [];
-    private _components: Record<string, any> = {};
+    private _components: Record<string, () => JSX.Element> = {};
 
     constructor() {
         makeObservable(this, {
@@ -13,7 +13,7 @@ class GlobalComponentsStore {
         this._components = {};
     }
 
-    register(globalComponents: { key: string; component: unknown }[]): void {
+    register(globalComponents: { key: string; component: () => JSX.Element }[]): void {
         this._register = globalComponents.map(({key}) => key);
         this._components = globalComponents.reduce((o, {key, component}) => ({
             ...o,
@@ -21,7 +21,7 @@ class GlobalComponentsStore {
         }), {});
     }
 
-    getComponent(key: string, required: boolean): any {
+    getComponent(key: string, required: boolean): () => JSX.Element {
         if (!this._register.includes(key) && required) {
             throw new Error(`Глобальный компонент ${key} не зарегистрирован`);
         }

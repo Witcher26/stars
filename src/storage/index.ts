@@ -1,7 +1,7 @@
 import {createStore, createEvent} from 'effector';
 import GlobalComponent from './GlobalComponent';
 
-const savePreliminaryData = createEvent();
+const savePreliminaryData = createEvent<any[]>();
 
 const eventsSaveFormData = [
     savePreliminaryData

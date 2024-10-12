@@ -1,4 +1,3 @@
-import React from 'react';
 import {observer} from 'mobx-react'
 import GlobalComponentsStore from './GlobalComponentsStore';
 import "./styless.css";
@@ -8,7 +7,7 @@ function GlobalFooterComponent() {
         <div className="footer">
             Footer
         </div>
-    )
+    );
 }
 
 const GlobalFooter = {
@@ -20,8 +19,7 @@ const globalComponentsStore = new GlobalComponentsStore();
 
 globalComponentsStore.register([GlobalFooter]);
 
-// @ts-ignore
-function GlobalComponent({keyComponent, requiredComponent = true, ...props}) {
+function GlobalComponent({keyComponent = "default-key", requiredComponent = true, ...props}) {
     const GlobalC = globalComponentsStore.getComponent(keyComponent, requiredComponent);
 
     if (!GlobalC) {
