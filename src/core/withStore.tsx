@@ -1,6 +1,6 @@
 import React, { ComponentClass } from "react";
 import PropTypes from "prop-types";
-import { $preliminaryStore } from "../storage";
+import { $gitHubStarsStore } from "../storage";
 
 const buildPropTypes = (originalPropTypes: Record<string, any>) => ({
     ...originalPropTypes,
@@ -27,7 +27,7 @@ const withStore = (Component: ComponentClass<any, any>) => {
     Component.propTypes = buildPropTypes(originalComponentPropTypes);
 
 
-    $preliminaryStore.watch((values) => {
+    $gitHubStarsStore.watch((values) => {
         _store.gitHubStars = values;
     });
 
